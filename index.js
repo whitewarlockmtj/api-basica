@@ -8,3 +8,7 @@ app.get('/health', (req, res) => res.send({ status: 'ok' }));
 app.listen(PORT, () => console.log(`App corriendo en puerto ${PORT}`));
 
 module.exports = app;
+
+if (require.main === module) {
+    app.listen(PORT, () => console.log(`App corriendo en puerto ${PORT}`));
+}
