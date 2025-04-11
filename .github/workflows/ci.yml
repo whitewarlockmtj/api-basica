@@ -48,7 +48,7 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.DEPLOY_PORT }}
           script: |
-            docker pull whitewarlockmtj/api-basica
-            docker stop api-basica || true
-            docker rm api-basica || true
-            docker run -d --name api-basica -p 3000:3000 whitewarlockmtj/api-basica
+            sudo docker pull whitewarlockmtj/api-basica
+            sudo docker stop api-basica || true
+            sudo docker rm api-basica || true
+            sudo docker run -d --name api-basica -p 3000:3000 whitewarlockmtj/api-basica
