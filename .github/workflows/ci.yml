@@ -33,5 +33,5 @@ jobs:
 
     - name: Push Docker image
       run: |
-        docker tag usuario/api-basica:latest usuario/api-basica:latest
-        docker push usuario/api-basica:latest
+        docker tag whitewarlockmtj/api-basica:latest whitewarlockmtj/api-basica:latest
+        docker push whitewarlockmtj/api-basica:latest
