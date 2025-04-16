@@ -7,7 +7,7 @@ on:
 
 jobs:
   eslint:
-    runs-on: ubuntu-latest
+    runs-on: node:alpine #ubuntu-latest
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v3
@@ -25,7 +25,7 @@ jobs:
 
   test:
     needs: eslint
-    runs-on: ubuntu-latest
+    runs-on: node:alpine #ubuntu-latest
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v3
@@ -46,7 +46,7 @@ jobs:
 
   docker-validation:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: node:alpine #ubuntu-latest
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v3
@@ -67,7 +67,7 @@ jobs:
 
   build-and-deploy:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: node:alpine #ubuntu-latest
     if: success()
     steps:
       - name: Clonar repositorio
