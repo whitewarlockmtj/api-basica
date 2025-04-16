@@ -24,6 +24,7 @@ jobs:
         run: npx eslint .  # Este paso falla si ESLint encuentra errores
 
   test:
+    needs: eslint
     runs-on: ubuntu-latest
     steps:
       - name: Clonar repositorio
@@ -42,6 +43,27 @@ jobs:
       
       - name: Ejecutar tests
         run: npm test
+
+  docker-validation:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Construir imagen Docker
+        run: docker build -t edeljose/api-basica1 .
+
+      - name: Escanear imagen Docker con Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: edeljose/api-basica1
+          format: table
+          exit-code: 1
+          severity: HIGH,CRITICAL
 
   build-and-deploy:
     needs: test
