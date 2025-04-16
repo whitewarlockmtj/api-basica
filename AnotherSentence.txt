@@ -12,3 +12,8 @@ ssh -R 2222:localhost:22 serveo.net
 eval "$(ssh-agent -s)"
 ssh-add ./Downloads/php_docker_ci_cd.pem
 ssh ubuntu@3.95.156.110
+
+git add .
+git commit -m "Versión inicial con Docker, tests y CI/CD"
+git branch -M main
+git push -u origin main
