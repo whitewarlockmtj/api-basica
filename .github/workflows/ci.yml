@@ -6,6 +6,23 @@ on:
       - main
 
 jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar ESLint
+        run: npx eslint .  # Este paso falla si ESLint encuentra errores
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -20,6 +37,9 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
+      - name: Ejecutar linter
+        run: npm run lint
+      
       - name: Ejecutar tests
         run: npm test
 

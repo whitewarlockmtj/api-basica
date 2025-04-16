@@ -1,0 +1,9 @@
+sudo usermod -aG docker $USER
+
+newgrp docker
+sudo systemctl reload docker
+
+watch -n 1 curl http://localhost:3000
+
+
+ssh -R 2222:localhost:22 serveo.net
